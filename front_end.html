@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 	<html>
-		<body>
+		<head>		
 			<h1>Trail-Mix</h1>
+		</head>
+		<body>
 			<h2>Your Traveling Playlist</h2>
-			<h3>Show us where you're heading:</h3>			
-				<p>We'll create a a playlist based on the music that best suits your journey</p>
-				<p>An intelligent mix that adapts to where you are</p>
+			<h3>Show us where you're heading:</h3>
 
 			<img src="GoldenGateBridge-001.jpg">
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+			 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+			<script type="text/javascript">
+
+			function passPosition(position){
+				FormData.append(start_long,position.coords.longitude)
+				FormData.append(start_lat,position.coords.latitude)
+			}
+
+			function myIP(){
+			$("#btn").click(function(){
+			            var geocoder =  new google.maps.Geocoder();
+				        navigator.geolocation.getCurrentPosition(passPosition);			            
+			    		geocoder.geocode( { 'address': '#city'}, function(results, status) {
+			          if (status == google.maps.GeocoderStatus.OK) {
+						FormData.append(end_long, results[0].geometry.location.lng())
+						FormData.append(end_lat,results[0].geometry.location.lat())
+			          } else {
+			            alert("Something got wrong " + status);
+			          }
+			        });
+			});
+			}
+			 </script>
+			<body onload="myIP()">
+			<input type="text" id= "city">
+			<input id="btn" type="button" value="Go!" />
+
+
+				<p>We'll create a a playlist based on the music that best suits your journey</p>
+				<p>An intelligent mix that adapts to where you are</p>
 
 			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1619953.5686195034!2d-122.13120240043224!3d37.5321617057318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1444538896665" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
