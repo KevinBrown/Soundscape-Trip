@@ -1,7 +1,11 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../goldenGate.jpg");
+  background-image: url("../images/goldenGate.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #1DA768;
 }
 
 a {
